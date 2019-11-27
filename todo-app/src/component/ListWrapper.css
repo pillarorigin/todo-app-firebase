@@ -1,0 +1,22 @@
+.list-wrapper {
+    background-color: #f6f6f6;
+    border-radius: 10px;
+    width: 300px;
+  }
+  
+  .add-button {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    border-radius: 10px;
+    position: relative;
+    color: gray;
+  }
+  
+  .add-button:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    opacity: 0.8;
+    background-color: gray;
+    color: #181818;
+  }

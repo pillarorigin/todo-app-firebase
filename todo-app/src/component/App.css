@@ -1,0 +1,9 @@
+body {
+    background-color: #181818;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+  }

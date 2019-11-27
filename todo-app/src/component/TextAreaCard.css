@@ -1,0 +1,15 @@
+.textarea-card {
+    margin: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    position: relative;
+  }
+  
+  textarea {
+    resize: vertical;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    width: 95%;
+    margin: 2%;
+  }

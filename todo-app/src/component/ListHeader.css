@@ -1,0 +1,8 @@
+.list-header {
+    margin: 20px;
+    border-radius: 10px;
+  }
+  
+  .list-header:hover {
+    cursor: pointer;
+  }
