@@ -17,7 +17,11 @@
 
 4. method.js 추가 (firebase db안에서 data 불러오는 로직)
 
-5. firebase database 추가
+5. firebase database 추가 후 규칙 추가 변경
+
+   ```
+   allow read, write: if request.time <timestamp.date(2019,12,27);
+   ```
 
 6. local 3000 실행
 
