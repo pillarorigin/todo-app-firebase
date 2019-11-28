@@ -44,7 +44,7 @@ i  Skipping write of build/index.html
 [Hosting URL] : https://myfirstfirebase-8f5ed.firebaseapp.com
 
     9. 배포 버전 관리
-        1) deploy 이후 크리티컬 오류가 있다면 전 버전으로 되돌릴 수 있다.
+        1) deploy 이후 hotfix가 있다면 전 버전으로 되돌릴 수 있다.
         2) 1GB까지 사용 가능.
 
     10. http://gitignore.io/api/firebase 에서 .gitignore에 들어갈 파일 생성후 붙이기
@@ -55,5 +55,13 @@ i  Skipping write of build/index.html
     1. git flow init (브랜치가 master -> branch)
 ```bash
     $ git flow init -d 
-    //-d 옵션은 default로 브랜치를 생성해줌
+    //-d 옵션은 default로 develop 브랜치를 생성해줌
 ```
+
+    2. gitflow branch는 모두 6종류
+        - master : 최종 릴리즈에 사용되는 안정된 버전
+        - develop : 다음 릴리즈를 위해 개발중인 최신 버전
+        - feature : 특정 기능 개발을 위한 branch 
+        - release : 릴리즈 점검을 위한 branch
+        - hotfix : 긴급 버그 픽스를 위한 branch
+        - support : 버전 호환성 문제를 처리하기 위한 branch
