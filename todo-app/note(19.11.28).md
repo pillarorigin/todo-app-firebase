@@ -48,3 +48,12 @@ i  Skipping write of build/index.html
         2) 1GB까지 사용 가능.
 
     10. http://gitignore.io/api/firebase 에서 .gitignore에 들어갈 파일 생성후 붙이기
+
+
+### 2. git flow
+
+    1. git flow init (브랜치가 master -> branch)
+```bash
+    $ git flow init -d 
+    //-d 옵션은 default로 브랜치를 생성해줌
+```
