@@ -84,7 +84,8 @@ const ListWrapper = () => {
         //그래서 바뀐 todos를 array로 뿌려줘야 해서 ... 구조할당
     }
 
-    //Todo: 체크박스 onchange사용하기 위해 
+    //Todo: 체크박스 onchange사용하기 위해
+    //git flow feature 기능 test 
     const patchCompleted = async (id) => {
         const targetTodo = todos.find(el => el.id === id);
         //id에 해당하는 값으로 pacth접근

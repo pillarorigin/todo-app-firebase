@@ -59,9 +59,29 @@ i  Skipping write of build/index.html
 ```
 
     2. gitflow branch는 모두 6종류
-        - master : 최종 릴리즈에 사용되는 안정된 버전
-        - develop : 다음 릴리즈를 위해 개발중인 최신 버전
-        - feature : 특정 기능 개발을 위한 branch 
+        - master : 최종 릴리즈에 사용되는 안정된 버전 (최종 배포, deploy 버전과 일치해야)
+        - develop : 다음 릴리즈를 위해 개발중인 최신 버전 (배포 준비)
+        - feature : 특정 기능 개발을 위한 branch (ex. feature/기능명_담당자 성함)
         - release : 릴리즈 점검을 위한 branch
-        - hotfix : 긴급 버그 픽스를 위한 branch
+        - hotfix : 긴급 버그 픽스를 위한 branch (master에서 급히 수정해야 하는 경우)
         - support : 버전 호환성 문제를 처리하기 위한 branch
+
+    3. git flow 명령어
+    ```bash
+    $ git flow <브랜치면> 명령어 [옵션]
+
+    ```
+    4. patch 기능을 한번 만들어보자
+    ```bash
+    $ git flow feature start patchCompleted
+    //student@M1702 MINGW64 ~/todo-app/firebase/todo-app (feature/patchCompleted)
+    ```
+    5. git branch 확인
+    ```bash
+    $ git branch
+    develop
+    * feature/patchCompleted
+    master
+    ```
+
+### 3. 
