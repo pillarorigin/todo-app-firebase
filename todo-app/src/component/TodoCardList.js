@@ -9,10 +9,10 @@ const TodoCardList = (props) => {
     <div className="card-list">
       {props.todos.map(el => {
         return (
-          <div key={el.id}>
+          <div key={el._id}>
             <TodoCard content={el.content}/>
-            <input type="checkbox" onChange={() => {props.patchCompleted(el.id)}} checked={el.completed}/>
-            <button onClick={() => {props.deleteTodos(el.id)}}>X</button>
+            <input type="checkbox" onChange={() => {props.patchCompleted(el._id)}} checked={el.completed}/>
+            <button onClick={() => {props.deleteTodos(el._id)}}>X</button>
           </div>
         )})}
     </div>

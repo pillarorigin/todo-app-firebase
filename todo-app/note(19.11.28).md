@@ -84,4 +84,30 @@ i  Skipping write of build/index.html
     master
     ```
 
-### 3. 
+    6. feature branch start
+    ```bash
+    $ git flow feature start patchCompleted
+    $ git branch
+    $ git add .
+    $ git commit -m "[mod] git flow feature test"
+    $ git checkout develop
+    $ git branch
+    $ git checkout feature/patchCompleted
+    $ git push origin feature/patchCompleted
+    $ git checkout develop
+    $ git push origin develop
+    $ git checkout feature/patchCompleted
+    $ git flow feature finish feature.patchCompleted
+    $ git checkout develop
+    $ git branch
+    $ git pull origin develop
+    ```
+
+    7. remote에서 하지않고 local에서 사용 
+    ```bash
+    
+    ```
+
+    8. ref
+    [git flow] : https://danielkummer.github.io/git-flow-cheatsheet/index.ko_KR.html
+

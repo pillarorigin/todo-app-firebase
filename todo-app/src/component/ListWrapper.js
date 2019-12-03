@@ -8,27 +8,15 @@ import TextAreaCard from './TextAreaCard';
 import './ListWrapper.css';
 import method from '../firebase/method';
 
-const url = 'http://localhost:5000/todos';
-
 const ListWrapper = () => {
 
     const [todo, setTodo] = useState('');
     const [todos, setTodos] = useState(null);
     const [createMode, setCreateMode] = useState(false);
 
-    // UNIQ. key
-    const UniqKey = () => {
-        if (todos && todos.length) {
-            return todos[todos.length - 1].id + 1;
-        } else {
-            return 0;
-        };
-    };
-
     //GET
     const getTodos = async () => {
         const result = await method.getTodos();
-        console.log('todos 가져오기');
         // const result = await Axios.get(url);
         // result > status > 200일 때
         // const { data } = result;
@@ -38,16 +26,9 @@ const ListWrapper = () => {
     //POST
     const postTodos = async (e) => {
         e.preventDefault();
-        console.log('todo 작성 시작');
         const sample = {
-            //현재 todos의 길이 보다 하나 크게
-
-            //TODO: UNIQ. key
-            // id: todos.length + 1,
-            id: UniqKey(),
             content: todo,
-            completed: false
-            // todo state
+            create_at: false
         }
         //console.log(id); //undefined
         //const id = sample.id; // sample의 id 속성값
@@ -58,11 +39,8 @@ const ListWrapper = () => {
         // const { data } = result //result의 속성 중 data를 디스트럭처링
 
         //여기서 Axios를 부르면 비효율적.. 왜? .. 그래서 setTodos를 사용.
-        // console.log(todos);
         // todos.push(data);
-        // console.log(todos);
         setTodos([...todos, sample]) //주의점은 react가 지켜보고 있는 state가 바뀌어야 react가 그것을 감지하고 새로 render해줌.
-        // console.log(todos);
         setTodo('');
         setCreateMode(!createMode);
     }
@@ -70,12 +48,11 @@ const ListWrapper = () => {
     //DELETE
     const deleteTodos = async (id) => {
         //실제 db에서 삭제
-        await method.getTodos(id);
-
+        await method.deleteTodos(id);
         //DOM
         // await Axios.delete(url + `/${id}`); //실제 DB에서 삭제되는 로직 추가 후 주석 처리
         //find helper method를 이용하여 배열에 접근
-        const targetTodo = todos.find(el => el.id === id);
+        const targetTodo = todos.find(el => el._id === id); //local에 있는 id이므로 _id로 적어야
         const idx = todos.indexOf(targetTodo);
         todos.splice(idx, 1); //실제 todos 바뀌었지만 react는 아직 감지 못함
         //우리가 잘라놓은 애를 감지할 수 있게 해줘야하므로 setTodos() 사용.
@@ -87,9 +64,9 @@ const ListWrapper = () => {
     //Todo: 체크박스 onchange사용하기 위해
     //git flow feature 기능 test 
     const patchCompleted = async (id) => {
-        const targetTodo = todos.find(el => el.id === id);
+        const targetTodo = todos.find(el => el._id === id);
         //id에 해당하는 값으로 pacth접근
-        await Axios.patch(url + `/${id}`, { //데이터(completed) 넣을 자리
+        await Axios.patch(`/${id}`, { //데이터(completed) 넣을 자리
             // '!'을 사용해서 toggle 사용
             completed: !targetTodo.completed
         });
