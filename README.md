@@ -3,26 +3,19 @@
 ### 1. firebase 연결
 
 1. firebase 웹 앱 추가
-
 2. 추가할 프로젝트 설정의 구성을 가져와서 해당 폴더 config.js 추가해서 넣기
-
 3. initialize.js 파일에서 config.js 파일 불러올 수 있게 로직 구현
-
    ```js
    import firebaseConfig from './config';
    import * as firebase from 'firebase/app';
    
    firebase.initializeApp(firebaseConfig);
    ```
-
 4. method.js 추가 (firebase db안에서 data 불러오는 로직)
-
 5. firebase database 추가 후 규칙 추가 변경
-
    ```
    allow read, write: if request.time <timestamp.date(2019,12,27);
    ```
-
 6. local 3000 실행
 
 ### 2. git repo랑 연결
@@ -35,5 +28,18 @@ $ git remote add origin <url>
 $ git push origin master
 ```
 
-### 3. 
+### 3. git flow
+```bash
+  git add .
+  git commit -m "[MOD]method.js"
+  git push origin feature/modify-delete
+  git flow feature finish modify-delete
+  git flow feature start feature/modify-post
+```
 
+### 4. firebase depoly
+```bash
+    $ npm run build
+    $ firebase deploy
+    //향후 depoly시 특정 기능만 추가할 수 도 있음
+```

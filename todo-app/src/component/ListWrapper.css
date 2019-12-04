@@ -1,5 +1,5 @@
 .list-wrapper {
-    background-color: #f6f6f6;
+    background-color: gray;
     border-radius: 10px;
     width: 300px;
   }
@@ -10,7 +10,7 @@
     margin: 20px;
     border-radius: 10px;
     position: relative;
-    color: gray;
+    color: black;
   }
   
   .add-button:hover {
