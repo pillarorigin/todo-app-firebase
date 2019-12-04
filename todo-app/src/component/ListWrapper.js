@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
 
 import ListHeader from './ListHeader';
 import TodoCardList from './TodoCardList';
@@ -13,36 +12,44 @@ const ListWrapper = () => {
     const [todo, setTodo] = useState('');
     const [todos, setTodos] = useState(null);
     const [createMode, setCreateMode] = useState(false);
+    // TODO : spinner 
+    const [spinner, setSpineer] = useState(null);
 
     //GET
     const getTodos = async () => {
-        const result = await method.getTodos();
-        // const result = await Axios.get(url);
-        // result > status > 200일 때
-        // const { data } = result;
-        // setTodos(data);
-        setTodos(result);
+        try {
+            const result = await method.getTodos();
+            setTodos(result);
+            return;
+        }catch(error){
+            console.log(error);
+            //POST home/posts/1/comment
+            //redirect > home/posts/1
+        }
     }
     //POST
     const postTodos = async (e) => {
         e.preventDefault();
+        setCreateMode(!createMode);
+        setSpineer(true);
         const sample = {
             content: todo,
-            create_at: false
+            // create_at: false
         }
         //console.log(id); //undefined
         //const id = sample.id; // sample의 id 속성값
         //const {id} = sample; // sample의 속성 중 id 값 (디스트럭처링(구조를 분해)) 위 와 결과 같음 
 
         // const result = await Axios.post(url, sample);
-        await method.postTodos(sample);
+        const result = await method.postTodos(sample);
+        console.log(result)
         // const { data } = result //result의 속성 중 data를 디스트럭처링
 
         //여기서 Axios를 부르면 비효율적.. 왜? .. 그래서 setTodos를 사용.
         // todos.push(data);
-        setTodos([...todos, sample]) //주의점은 react가 지켜보고 있는 state가 바뀌어야 react가 그것을 감지하고 새로 render해줌.
+        setTodos([...todos, result]) //주의점은 react가 지켜보고 있는 state가 바뀌어야 react가 그것을 감지하고 새로 render해줌.
         setTodo('');
-        setCreateMode(!createMode);
+        setSpineer(false);
     }
 
     //DELETE
@@ -63,14 +70,15 @@ const ListWrapper = () => {
 
     //Todo: 체크박스 onchange사용하기 위해
     //git flow feature 기능 test 
-    const patchCompleted = async (id) => {
+    const patchTodos = async (id, payload) => {
         const targetTodo = todos.find(el => el._id === id);
+        const sample = {
+            // content: '이것은 새로운 todo',
+            completed : !targetTodo.completed
+        }; //sample  객체는 true or false 값을 가짐
+        const result = await method.patchTodos(id, sample);
         //id에 해당하는 값으로 pacth접근
-        await Axios.patch(`/${id}`, { //데이터(completed) 넣을 자리
-            // '!'을 사용해서 toggle 사용
-            completed: !targetTodo.completed
-        });
-        //화면에서도 수정되게
+        console.log(result);
         targetTodo.completed = !targetTodo.completed;
         setTodos([...todos]);
     }
@@ -82,21 +90,19 @@ const ListWrapper = () => {
 
     //이 함수 안에서는 asyn 하면 안됨.
     useEffect(() => {
-        getTodos()
+        getTodos() //단 한번 동작이 되길 원하는 로직을 넣음.
+        //hook rules
+        // if() {
+
+        // }
     }, []) //빈 배열로 넣고 한번만 알려줘야 함
     //빈배열에 todos를 부르면 getTodos를 부르고 그 안에서 setTodos를 부르는데 그걸 또 todos라 감지하고 계속 랜더 .. 재귀적 호출이 일어남.
 
     return (
-        <div className="list-wrapper">
-            <ListHeader title="Lorem Ipsum" />
-            {todos ? <TodoCardList todos={todos} patchCompleted={patchCompleted} deleteTodos={deleteTodos} /> : <div>Spinner</div>}
-            {createMode ? <TextAreaCard
-                postTodos={postTodos}
-                setTodo={setTodo}
-                todo={todo}
-                changeCreateMode={changeCreateMode} /> : <div className="add-button" onClick={changeCreateMode}>
-                    <p>+ Add another card</p>
-                </div>}
+        <div className="list-wrapper"> <ListHeader title="Lorem Ipsum" />
+            {todos ? <TodoCardList todos={todos} patchCompleted={patchTodos} deleteTodos={deleteTodos} /> : <div>Spinner</div>}
+            {createMode ? <TextAreaCard postTodos={postTodos} setTodo={setTodo} todo={todo} changeCreateMode={changeCreateMode} /> : <div className="add-button" onClick={changeCreateMode}> <p>+ Add another card</p> </div>}
+            {!createMode && spinner ? <p>Spinner</p> : null}  
         </div>
     );
 };
