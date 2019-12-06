@@ -5,7 +5,7 @@ import TodoCardList from './TodoCardList';
 import TextAreaCard from './TextAreaCard';
 
 import './ListWrapper.css';
-import method from '../firebase/method';
+import method from '../../firebase/method';
 
 const ListWrapper = () => {
 
