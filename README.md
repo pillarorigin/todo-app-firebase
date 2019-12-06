@@ -18,8 +18,33 @@
    ```
 6. local 3000 실행
 
-### 2. git repo랑 연결
+
+
+### 2. Project Struct & git repo랑 연결
+```bash
+  todo-app
+    .firebase
+    build
+    node_modules
+    public
+    src
+      components
+      firebase
+      index.js
+    .firebaserc
+    .gitignore
+    firebase.json
+    firestore.indexes.json
+    firestore.rules
+    note(19.11.28).md
+    package-lock.json
+    package.json
+    README.md
+  README.md
+  todo-app-firebase.PNG
 ```
+
+```bash
 $ git init
 $ git add .
 $ git commit -m "[ADD]todo-app-firebase"
@@ -48,8 +73,23 @@ $ git push origin master
     //향후 depoly시 특정 기능만 추가할 수 도 있음
 ```
 
+
 ### 5. Redux, hook
 ```bash
   프로젝트 최상위인 index.js에서 state를 작성
   //Redux와 React Redux 두개의 Lib 필요
 ```
+
+### 6. Install
+```bash
+  todo-app/firebase/todo-app $ yarn add react-router-dom
+  todo-app/firebase/todo-app $ yarn add bootstrap
+    //index.js에 추가
+    import 'bootstrap/dist/css/bootstrap.min.css';
+    import '@fortawesome/fontawesome-free/css/all.min.css';
+```
+
+### 7. 표기법
+javaScript: camelCase표기법 (중간에 이어지는 단어의 첫문자를 대문자로 표기)
+react component : 파스칼 표기법 (첫 단어를 대문자로 시작하는 표기)
+python, ruby: snake 표기법 (소문자로 쓰되 중간에 이어지는 단어 사이에 _를 넣어 표기 )

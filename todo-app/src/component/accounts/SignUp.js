@@ -19,7 +19,7 @@ const SignUp = () => {
     };
     const handleSubmit = (e) => {
         //id가 중복인 경우, 비밀번호가 일치하지 않은 경우, 정보를 모두 입력하지 않은 경우. 모두 걸러야 함
-        e.preventDefalut();
+        e.preventDefault();
         // isEmailChecked 가 아니거나 isEmailChecked yet이면 넘기지 않게
         if (!isEmailChecked || isEmailChecked === 'yet') {
             alert('e-mail 중복확인이 필요합니다.')
@@ -49,7 +49,7 @@ const SignUp = () => {
     return (
         <>
             {/* 8. to 라는 props를 통해 string(/login)을 보내주게 */}
-            { isResultChecked && <Redirect to ='/login' /> }
+            { isResultChecked && < Redirect to ='/login' /> }
             {/* //  1. form 작성 */}
         <div className="row justify-content-center">
                 <div className="col-8">
