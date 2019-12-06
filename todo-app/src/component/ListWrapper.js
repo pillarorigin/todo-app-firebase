@@ -99,7 +99,7 @@ const ListWrapper = () => {
     //빈배열에 todos를 부르면 getTodos를 부르고 그 안에서 setTodos를 부르는데 그걸 또 todos라 감지하고 계속 랜더 .. 재귀적 호출이 일어남.
 
     return (
-        <div className="list-wrapper"> <ListHeader title="Lorem Ipsum" />
+        <div className="list-wrapper"> <ListHeader title="Bobby's Todo List" />
             {todos ? <TodoCardList todos={todos} patchCompleted={patchTodos} deleteTodos={deleteTodos} /> : <div>Spinner</div>}
             {createMode ? <TextAreaCard postTodos={postTodos} setTodo={setTodo} todo={todo} changeCreateMode={changeCreateMode} /> : <div className="add-button" onClick={changeCreateMode}> <p>+ Add another card</p> </div>}
             {!createMode && spinner ? <p>Spinner</p> : null}  
